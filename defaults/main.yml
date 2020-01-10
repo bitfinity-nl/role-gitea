@@ -1,0 +1,162 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/main.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+# Sources:
+#   https://gitea.io/
+#
+# Note(s):
+#   Change your variable(s) here, in your playbook or in your global variable(s).
+
+
+# -- MariaDB server settings --
+#
+# Variable(s):
+#   mariadb_administrative_account  : 'root' 
+#   mariadb_administrative_password : 'password'
+#  
+mariadb_administrative_account  : 'root' 
+mariadb_administrative_password : '{{ def_mysql_pass }}'
+
+
+# -- MariaDB database settings --
+#
+# Variable(s):
+#   gitea_db_name : 'gitea'      # Set the database name.
+#   gitea_db_user : 'gitea'      # Set the database username.
+#   gitea_db_pass : 'password'  # Set the database password.
+# 
+gitea_db_name : 'gitea'
+gitea_db_user : 'gitea'
+gitea_db_pass : 'password'
+
+
+# -- Gogs basic settings--
+#  
+# Variable(s):
+#   gitea_version: 'https://github.com/go-gitea/gitea/releases/download/v1.10.1/gitea-1.10.1-linux-amd64'  # Binary version from Github.
+#   gitea_admin_user : 'giteaadmin'                                                                        # gitea admin user.
+#   gitea_admin_pass : 'password'                                                                          # gitea admin Password.
+#
+gitea_version    : 'https://github.com/go-gitea/gitea/releases/download/v1.10.1/gitea-1.10.1-linux-amd64'
+gitea_admin_user : 'giteaadmin'
+gitea_admin_pass : 'password'
+gitea_admin_mail : 'email@example.com'
+
+
+# -- Apache2 reverse proxy --
+#
+# Variable(s):
+#   gitea_apache2_domain         : 'git.example.com'
+#   gitea_apache2_cert_file      : '/etc/apache2/ssl/2_guacamole.domain.com.crt'
+#   gitea_apache2_cert_keyfile   : '/etc/apache2/ssl/guac.key'
+#   guac_apache2_cert_chainfile : '/etc/apache2/ssl/1_root_bundle.crt'
+#
+gitea_apache2_domain         : '192.168.122.10'
+gitea_apache2_cert_file      : '{{ def_ap_sslcertificatefile }}'
+gitea_apache2_cert_keyfile   : '{{ def_ap_sslcertificatekeyfile }}'
+gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
+
+
+# -- Gogs Config file /opt/gogs/custom/conf/app.ini --
+#
+# Variable(s):
+#   gitea_app_name                : 'Gogs'
+#   gitea_run_user                : 'gogs'
+#   gitea_run_mode                : 'prod'
+#
+#   # -- [database] --
+#   gitea_db_type                 : 'mysql'
+#   gitea_host                    : '127.0.0.1:3306'
+#   gitea_name                    : 'gogs'
+#   gitea_user                    : 'gogs'
+#   gitea_passwd                  : 'password'
+#   gitea_ssl_mode                : 'disable'
+#   gitea_path                    : 'data/gogs.db' 
+#   # -- [repository] --
+#   gitea_root                    : '/opt/gogs/gogs-repositories'   
+#
+#   # -- [server] --
+#   gitea_gitea_domain             : 'localhost'
+#   gitea_http_port               : '3000'
+#   gitea_root_url                : 'http://192.168.122.10:3000/'
+#   gitea_disable_ssh             : 'false'
+#   gitea_ssh_port                : '22'
+#   gitea_start_ssh_server        : 'false'
+#   gitea_offline_mode            : 'false'
+#
+#   # -- [mailer] --
+#   gitea_enabled                 : 'false'
+#
+#   # -- [service] --
+#   gitea_register_email_confirm  : 'false'
+#   gitea_enable_notify_mail      : 'false'
+#   gitea_disable_registration    : 'false'
+#   gitea_enable_captcha          : 'true'
+#   gitea_require_signin_view     : 'false'
+#
+#   # -- [picture] --
+#   gitea_disable_gravatar        : 'false'
+#   gitea_enable_federated_avatar : 'false'
+#
+#   # -- [session] --
+#   gitea_provider                : 'file'
+#   
+#   # -- [log] --
+#   gitea_mode                    : 'file'
+#   gitea_level                   : 'info'
+#   gitea_root_path               : '/opt/gogs/log'
+# 
+#   # -- [security] --
+#   gitea_install_lock            : 'false'
+#   gitea_secret_key              : 'ljmkrutc6q0yi56'
+#
+# Note(s):
+#   Please see the documentation for the configuration options.
+#
+gitea_app_name                : 'Gitea GIT '
+gitea_run_user                : 'git'
+gitea_run_mode                : 'prod'
+# -- [database] --
+gitea_db_type                 : 'mysql'
+gitea_host                    : '127.0.0.1:3306'
+gitea_name                    : '{{ gitea_db_name }}'
+gitea_user                    : '{{ gitea_db_user }}'
+gitea_passwd                  : '{{ gitea_db_pass }}'
+gitea_ssl_mode                : 'disable'
+gitea_path                    : 'data/gogs.db'
+# -- [repository] --
+gitea_root                    : '/opt/gogs/gogs-repositories'
+# -- [server] --
+gitea_gitea_domain            : 'localhost'
+gitea_http_port               : '3000'
+gitea_root_url                : 'http://192.168.122.10:3000/'
+gitea_disable_ssh             : 'false'
+gitea_ssh_port                : '22'
+gitea_start_ssh_server        : 'false'
+gitea_offline_mode            : 'false'
+# -- [mailer] --
+gitea_enabled                 : 'false'
+# -- [service] --
+gitea_register_email_confirm  : 'false'
+gitea_enable_notify_mail      : 'false'
+gitea_disable_registration    : 'true'
+gitea_enable_captcha          : 'true'
+gitea_require_signin_view     : 'false'
+# -- [picture] --
+gitea_disable_gravatar        : 'false'
+gitea_enable_federated_avatar : 'false'
+# -- [session] --
+gitea_provider                : 'file'
+# -- [log] --
+gitea_mode                    : 'file'
+gitea_level                   : 'info'
+gitea_root_path               : '/opt/gogs/log'
+# --[security] --
+gitea_install_lock            : 'false'
+gitea_secret_key              : 'ljmkrutc6q0yi56'

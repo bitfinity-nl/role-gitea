@@ -1,0 +1,71 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/gogs.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+
+- name: "Install packages"
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes 
+  vars:
+    packages:
+    - git
+    - wget
+    - unzip
+
+- name: "Create a gitea group"
+  group:
+    name: git
+
+- name: "Create a git system user"
+  user:
+    name: git
+    group: git
+    shell: /sbin/nologin
+    comment: "Git nologin user"
+    state: present
+
+- name: "Download binary gitea from Github to /usr/local/bin/gitea"
+  get_url:
+    url: "{{ gitea_version }}"
+    dest: /usr/local/bin/gitea
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Create directory structure for gitea"
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { path: '/var/lib/gitea/custom', owner: 'root', group: 'root', mode: '755' }
+    - { path: '/var/lib/gitea/public', owner: 'root', group: 'root', mode: '755' }
+    - { path: '/var/lib/gitea/data', owner: 'git', group: 'git', mode: '750' }
+    - { path: '/var/lib/gitea/indexers', owner: 'git', group: 'git', mode: '750' }
+    - { path: '/var/lib/gitea/log', owner: 'git', group: 'git', mode: '750' }
+    - { path: '/etc/gitea', owner: 'root', group: 'git', mode: '0770' }
+
+- name: "Transfer gitea systemd service file to /etc/systemd/system/"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - { src: 'gitea/gitea.service.j2', dest: '/etc/systemd/system/gitea.service', desc: 'For systemd service' }
+
+- name: "Start and enable services"
+  systemd:
+    name: gitea
+    state: started
+    enabled: yes

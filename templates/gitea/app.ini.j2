@@ -1,0 +1,51 @@
+APP_NAME = {{ gitea_app_name }}
+RUN_USER = {{ gitea_run_user }}
+RUN_MODE = {{ gitea_run_mode }}
+
+[database]
+DB_TYPE  = {{ gitea_db_type }}
+HOST     = {{ gitea_host }}
+NAME     = {{ gitea_name }}
+USER     = {{ gitea_user }}
+PASSWD   = {{ gitea_passwd }}
+SSL_MODE = {{ gitea_ssl_mode }}
+PATH     = {{ gitea_path }}
+
+[repository]
+ROOT = {{ gitea_root }}
+
+[server]
+DOMAIN           = {{ gitea_gitea_domain }}
+HTTP_PORT        = {{ gitea_http_port }}
+ROOT_URL         = {{ gitea_root_url }}
+DISABLE_SSH      = {{ gitea_disable_ssh }}
+SSH_PORT         = {{ gitea_ssh_port }}
+START_SSH_SERVER = {{ gitea_start_ssh_server }}
+OFFLINE_MODE     = {{ gitea_offline_mode }}
+
+[mailer]
+ENABLED = {{ gitea_enabled }}
+
+[service]
+REGISTER_EMAIL_CONFIRM = {{ gitea_register_email_confirm}}
+ENABLE_NOTIFY_MAIL     = {{ gitea_enable_notify_mail }}
+DISABLE_REGISTRATION   = {{ gitea_disable_registration }}
+ENABLE_CAPTCHA         = {{ gitea_enable_captcha }}
+REQUIRE_SIGNIN_VIEW    = {{ gitea_require_signin_view }}
+
+[picture]
+DISABLE_GRAVATAR        = {{ gitea_disable_gravatar }}
+ENABLE_FEDERATED_AVATAR = {{ gitea_enable_federated_avatar}}
+
+[session]
+PROVIDER = {{ gitea_provider }}
+
+[log]
+MODE      = {{ gitea_mode }}
+LEVEL     = {{ gitea_level }}
+ROOT_PATH = {{ gitea_root_path }}
+
+[security]
+INSTALL_LOCK = {{ gitea_install_lock }}
+SECRET_KEY   = {{ gitea_secret_key }}
+

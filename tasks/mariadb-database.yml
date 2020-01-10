@@ -1,0 +1,33 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/mariadb-dababase.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+
+- name: "Transfer template(s) to system"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'mariadb/50-server.cnf.j2', dest: '/etc/mysql/mariadb.conf.d/50-server.cnf' }
+
+- name: "Create initial Gogs MariaDB database"
+  mysql_db:
+    name: "{{ gitea_db_name }}"
+    encoding: utf8
+    state: present
+    login_user: "{{ mariadb_administrative_account }}"
+    login_password: "{{ mariadb_administrative_password }}"
+
+- name: "Create Gogs MariaDB database user"
+  mysql_user:
+    name: "{{ gitea_db_user }}"
+    password: "{{ gitea_db_pass }}"
+    priv: "{{ gitea_db_user }}.*:ALL,GRANT"
+    state: present
+    login_user: "{{ mariadb_administrative_account }}"
+    login_password: "{{ mariadb_administrative_password }}"

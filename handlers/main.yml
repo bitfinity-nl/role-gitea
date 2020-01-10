@@ -1,0 +1,16 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/main.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+
+- name: "restart_apache2"
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    name: apache2

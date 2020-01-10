@@ -1,0 +1,33 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/main.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+
+- name: "Install MariaDB server"
+  import_tasks: mariadb-server.yml
+  when:
+    - ansible_distribution_version == "18.04"
+    - ansible_architecture == "x86_64"
+
+- name: "Install Gogs database"
+  import_tasks: mariadb-database.yml
+  when:
+    - ansible_distribution_version == "18.04"
+    - ansible_architecture == "x86_64"
+
+- name: "Install Gitea"
+  import_tasks: gitea.yml
+  when:
+    - ansible_distribution_version == "18.04"
+    - ansible_architecture == "x86_64"
+
+- name: "Install Apache2"
+  import_tasks: apache2.yml
+  when:
+    - ansible_distribution_version == "18.04"
+    - ansible_architecture == "x86_64"

@@ -1,0 +1,58 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/apache2.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+
+- name: "Install packages"
+  apt:
+    name: "{{ packages }}"
+    update_cache: yes
+    state: present
+  vars:
+    packages:
+    - apache2
+
+- name: "Apache2 enable SSL module"
+  apache2_module:
+    state: present
+    name: "{{ item }}"
+  with_items:
+    - log_config
+    - proxy
+    - proxy_http
+    - proxy_wstunnel
+    - ssl
+
+- name: "Transfer templates"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: 'apache2/gitea.conf.j2', dest: '/etc/apache2/sites-available/gitea.conf' }
+
+- name: "Disable default sites"
+  command: "a2dissite {{ item }}"
+  with_items:
+    - 000-default.conf
+    - default-ssl.conf 
+  notify:
+    - restart_apache2
+
+- name: "Enable gitea.conf"
+  command: a2ensite gitea.conf
+  notify:
+    - restart_apache2
+
+- name: "Configure Firewall"
+  ufw:
+    rule: allow
+    proto: tcp
+    port: "{{ item }}"
+  with_items:
+    - "80"
+    - "443"

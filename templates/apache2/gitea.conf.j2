@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+
+  ServerName {{ gitea_apache2_domain }}
+  Redirect permanent / https://{{ gitea_apache2_domain }}/
+
+</VirtualHost>
+
+<VirtualHost *:443>
+
+  ServerName {{ gitea_apache2_domain }}
+  ProxyPreserveHost Off
+
+  SSLEngine on
+  SSLProxyEngine On
+  SSLCertificateFile {{ gitea_apache2_cert_file }}
+  SSLCertificateKeyFile {{ gitea_apache2_cert_keyfile }}
+
+  ProxyPass / http://localhost:3000/
+  ProxyPassReverse / http://localhost:3000/
+
+</VirtualHost>

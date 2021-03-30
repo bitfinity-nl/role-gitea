@@ -13,6 +13,7 @@
   when:
     - ansible_distribution_version == "18.04"
     - ansible_architecture == "x86_64"
+    - mariadb_install == "true"  
 
 - name: "Install Gogs database"
   import_tasks: mariadb-database.yml

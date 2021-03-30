@@ -19,7 +19,8 @@
 # Variable(s):
 #   mariadb_administrative_account  : 'root' 
 #   mariadb_administrative_password : 'password'
-#  
+#
+mariadb_install                 : 'false'
 mariadb_administrative_account  : 'root' 
 mariadb_administrative_password : '{{ def_mysql_pass }}'
 

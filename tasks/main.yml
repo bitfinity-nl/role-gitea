@@ -8,14 +8,14 @@
 #   Gitea is a community managed lightweight code hosting solution written in Go.
 #
 
-- name: "Install MariaDB server"
-  import_tasks: mariadb-server.yml
-  when:
-    - ansible_distribution_version == "18.04"
-    - ansible_architecture == "x86_64"
-    - mariadb_install == "true"  
+#- name: "Install MariaDB server"
+#  import_tasks: mariadb-server.yml
+#  when:
+#    - ansible_distribution_version == "18.04"
+#    - ansible_architecture == "x86_64"
+#    - mariadb_install == "true"  
 
-- name: "Install Gogs database"
+- name: "Install Gitea database"
   import_tasks: mariadb-database.yml
   when:
     - ansible_distribution_version == "18.04"

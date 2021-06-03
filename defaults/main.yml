@@ -37,7 +37,7 @@ gitea_db_user : 'gitea'
 gitea_db_pass : 'password'
 
 
-# -- Gogs basic settings--
+# -- Gitea basic settings--
 #  
 # Variable(s):
 #   gitea_version: 'https://github.com/go-gitea/gitea/releases/download/v1.10.1/gitea-1.10.1-linux-amd64'  # Binary version from Github.
@@ -64,23 +64,23 @@ gitea_apache2_cert_keyfile   : '{{ def_ap_sslcertificatekeyfile }}'
 gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 
 
-# -- Gogs Config file /opt/gogs/custom/conf/app.ini --
+# -- Gitea Config file /opt/Gitea/custom/conf/app.ini --
 #
 # Variable(s):
-#   gitea_app_name                : 'Gogs'
-#   gitea_run_user                : 'gogs'
+#   gitea_app_name                : 'gitea'
+#   gitea_run_user                : 'gitea'
 #   gitea_run_mode                : 'prod'
 #
 #   # -- [database] --
 #   gitea_db_type                 : 'mysql'
 #   gitea_host                    : '127.0.0.1:3306'
-#   gitea_name                    : 'gogs'
-#   gitea_user                    : 'gogs'
+#   gitea_name                    : 'gitea'
+#   gitea_user                    : 'gitea'
 #   gitea_passwd                  : 'password'
 #   gitea_ssl_mode                : 'disable'
-#   gitea_path                    : 'data/gogs.db' 
+#   gitea_path                    : 'data/gitea.db' 
 #   # -- [repository] --
-#   gitea_root                    : '/opt/gogs/gogs-repositories'   
+#   gitea_root                    : '/opt/gitea/gitea-repositories'   
 #
 #   # -- [server] --
 #   gitea_gitea_domain             : 'localhost'
@@ -111,7 +111,7 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 #   # -- [log] --
 #   gitea_mode                    : 'file'
 #   gitea_level                   : 'info'
-#   gitea_root_path               : '/opt/gogs/log'
+#   gitea_root_path               : '/opt/gitea/log'
 # 
 #   # -- [security] --
 #   gitea_install_lock            : 'false'
@@ -130,9 +130,9 @@ gitea_name                    : '{{ gitea_db_name }}'
 gitea_user                    : '{{ gitea_db_user }}'
 gitea_passwd                  : '{{ gitea_db_pass }}'
 gitea_ssl_mode                : 'disable'
-gitea_path                    : 'data/gogs.db'
+gitea_path                    : 'data/ggiteaogs.db'
 # -- [repository] --
-gitea_root                    : '/opt/gogs/gogs-repositories'
+gitea_root                    : '/opt/gitea/gitea-repositories'
 # -- [server] --
 gitea_gitea_domain            : 'localhost'
 gitea_http_port               : '3000'
@@ -157,7 +157,7 @@ gitea_provider                : 'file'
 # -- [log] --
 gitea_mode                    : 'file'
 gitea_level                   : 'info'
-gitea_root_path               : '/opt/gogs/log'
+gitea_root_path               : '/opt/gitea/log'
 # --[security] --
 gitea_install_lock            : 'false'
 gitea_secret_key              : 'ljmkrutc6q0yi56'

@@ -18,17 +18,17 @@
 - name: "Install Gitea database"
   import_tasks: mariadb-database.yml
   when:
-    - ansible_distribution_version == "18.04"
+#    - ansible_distribution_version == "18.04"
     - ansible_architecture == "x86_64"
 
 - name: "Install Gitea"
   import_tasks: gitea.yml
   when:
-    - ansible_distribution_version == "18.04"
+#    - ansible_distribution_version == "18.04"
     - ansible_architecture == "x86_64"
 
 - name: "Install Apache2"
   import_tasks: apache2.yml
   when:
-    - ansible_distribution_version == "18.04"
+#    - ansible_distribution_version == "18.04"
     - ansible_architecture == "x86_64"

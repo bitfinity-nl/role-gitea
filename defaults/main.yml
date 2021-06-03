@@ -136,7 +136,7 @@ gitea_root                    : '/opt/gitea/gitea-repositories'
 # -- [server] --
 gitea_gitea_domain            : 'localhost'
 gitea_http_port               : '3000'
-gitea_root_url                : 'http://192.168.122.10:3000/'
+gitea_root_url                : 'http://localhost:3000/'
 gitea_disable_ssh             : 'false'
 gitea_ssh_port                : '22'
 gitea_start_ssh_server        : 'false'

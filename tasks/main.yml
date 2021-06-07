@@ -27,11 +27,11 @@
 #    - ansible_distribution_version == "18.04"
     - ansible_architecture == "x86_64"
 
-- name: "Install Gitea"
-  import_tasks: gitea-config.yml
-  when:
+#- name: "Install Gitea"
+#  import_tasks: gitea-config.yml
+#  when:
 #    - ansible_distribution_version == "18.04"
-    - ansible_architecture == "x86_64"
+#    - ansible_architecture == "x86_64"
 
 
 #- name: "Install Apache2"

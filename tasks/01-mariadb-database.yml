@@ -23,7 +23,7 @@
     login_user: "{{ mariadb_administrative_account }}"
     login_password: "{{ mariadb_administrative_password }}"
 
-- name: "Create Gogs MariaDB database user"
+- name: "Create Gitea MariaDB database user"
   mysql_user:
     name: "{{ gitea_db_user }}"
     password: "{{ gitea_db_pass }}"

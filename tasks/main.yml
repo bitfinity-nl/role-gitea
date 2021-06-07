@@ -34,8 +34,8 @@
     - ansible_architecture == "x86_64"
 
 
-- name: "Install Apache2"
-  import_tasks: apache2.yml
-  when:
+#- name: "Install Apache2"
+#  import_tasks: apache2.yml
+#  when:
 #    - ansible_distribution_version == "18.04"
-    - ansible_architecture == "x86_64"
+#    - ansible_architecture == "x86_64"

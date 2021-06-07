@@ -9,7 +9,7 @@
 #
 
 - name: "Prepare server for Gitea"
-  import_tasks: 01-gitea.yml
+  import_tasks: 02-gitea.yml
   when:
     - ansible_architecture == "x86_64"
     

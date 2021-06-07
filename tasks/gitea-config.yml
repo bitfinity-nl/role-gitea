@@ -2,7 +2,7 @@
 # Title: role-gitea
 #
 # Author: bitfinity.nl
-# File: tasks/gitea-condig.yml
+# File: tasks/gitea-config.yml
 #
 # Description:
 #   Gitea is a community managed lightweight code hosting solution written in Go.

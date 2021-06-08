@@ -8,7 +8,10 @@
 #   Gitea is a community managed lightweight code hosting solution written in Go.
 #
 
-#- name: "Check if /etc/gitea/app.ini exists"
+- name: "Check if /etc/gitea/app.ini exists"
+  stat:
+    path: /etc/gitea/app.ini
+  register: result_app_ini
 
 - name: "Generate (Global) SECRET_KEY for Gitea"
   shell: gitea generate secret SECRET_KEY
@@ -30,7 +33,7 @@
 - name: "Configure global SECRET_KEY for Gitea"
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
-    regexp: '^INTERNAL_TOKEN.*='
+    regexp: '^SECRET_KEY.*='
     line: "SECRET_KEY = {{ result_global_secretkey.stdout }}" 
 #    when:
     

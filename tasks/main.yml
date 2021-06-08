@@ -19,7 +19,7 @@
     - ansible_architecture == "x86_64"
     
 - name: "Prepare server for Gitea"
-  import_tasks: 03-gitea-configuration.yml
+  import_tasks: 03-gitea-config.yml
   when:
     - ansible_architecture == "x86_64"
 

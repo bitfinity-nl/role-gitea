@@ -44,7 +44,8 @@ gitea_db_pass : 'password'
 #   gitea_admin_user : 'giteaadmin'                                                                        # gitea admin user.
 #   gitea_admin_pass : 'password'                                                                          # gitea admin Password.
 #
-gitea_version    : 'https://github.com/go-gitea/gitea/releases/download/v1.10.1/gitea-1.10.1-linux-amd64'
+gitea_version    : 'v1.14.2'
+gitea_url        : 'https://github.com/go-gitea/gitea/releases/download/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-amd64'
 gitea_admin_user : 'giteaadmin'
 gitea_admin_pass : 'password'
 gitea_admin_mail : 'email@example.com'

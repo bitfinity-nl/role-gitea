@@ -38,14 +38,32 @@
     owner: root
     group: root
     mode: 0755
-    
+
 - name: "Download binary gitea from Github to /usr/local/bin/gitea"
   get_url:
     url: "{{ gitea_url }}"
-    dest: /usr/local/bin/gitea
+    dest: /opt/gitea/{{ gitea_version }}
     owner: root
     group: root
     mode: 0755
+
+#- name: "Create symlink from /opt/gitea/{{ gitea_version }} to /usr/local/bin/gitea"
+#  ansible.builtin.file:
+#    src: /opt/gitea/{{ gitea_version }}
+#    dest: /usr/local/bin/gitea
+#    owner: root
+#    group: root
+#    mode: 0755
+#    state: link
+
+
+#- name: "Download binary gitea from Github to /usr/local/bin/gitea"
+#  get_url:
+#    url: "{{ gitea_url }}"
+#    dest: /usr/local/bin/gitea
+#    owner: root
+#    group: root
+#    mode: 0755
 
 
 - name: "Create directory structure for gitea"

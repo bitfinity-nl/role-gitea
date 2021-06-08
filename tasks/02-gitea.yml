@@ -56,16 +56,6 @@
     mode: 0755
     state: link
 
-
-#- name: "Download binary gitea from Github to /usr/local/bin/gitea"
-#  get_url:
-#    url: "{{ gitea_url }}"
-#    dest: /usr/local/bin/gitea
-#    owner: root
-#    group: root
-#    mode: 0755
-
-
 - name: "Create directory structure for gitea"
   file:
     path: "{{ item.path }}"

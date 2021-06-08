@@ -64,8 +64,7 @@
   with_items:
     - { src: 'gitea/gitea.service.j2', dest: '/etc/systemd/system/gitea.service', desc: 'For systemd service' }
 
-- name: "Start and enable services"
+- name: "Enable service gitea for startup"
   systemd:
     name: gitea
-    state: started
     enabled: yes

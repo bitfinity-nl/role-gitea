@@ -42,6 +42,6 @@
     path: /etc/gitea/app.ini
     regexp: '^INTERNAL_TOKEN.*='
     line: "INTERNAL_TOKEN = {{ result_internal_token.stdout }}"
-  when: result_app_ini.stat.exists == falase
+  when: result_app_ini.stat.exists == false
     
     

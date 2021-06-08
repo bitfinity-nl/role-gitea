@@ -131,7 +131,7 @@ gitea_name                    : '{{ gitea_db_name }}'
 gitea_user                    : '{{ gitea_db_user }}'
 gitea_passwd                  : '{{ gitea_db_pass }}'
 gitea_ssl_mode                : 'disable'
-gitea_path                    : 'data/ggiteaogs.db'
+gitea_path                    : 'data/gitea.db'
 # -- [repository] --
 gitea_root                    : '/opt/gitea/gitea-repositories'
 # -- [server] --

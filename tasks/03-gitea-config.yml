@@ -29,7 +29,7 @@
 
 - name: "Configure global SECRET_KEY for Gitea"
   ansible.builtin.lineinfile:
-    path: /etc/selinux/config
+    path: /etc/gitea/app.ini
     regexp: '^INTERNAL_TOKEN.*='
     line: "INTERNAL_TOKEN = {{ result_global_secretkey.stdout }}" 
 #    when:

@@ -59,3 +59,12 @@
        SSL_MODE = {{ gitea_ssl_mode }}
        CHARSET  = {{ gitea_charset }}
        PATH     = {{ gitea_path }}
+
+
+- name: Configure /etc/gitea/app.ini - repository"
+  blockinfile:
+    path: /etc/gitea/app.ini
+    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - repository --"
+    block: |
+       [repository]
+       ROOT = {{ gitea_root }}

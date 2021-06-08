@@ -2,6 +2,14 @@ APP_NAME = {{ gitea_app_name }}
 RUN_USER = {{ gitea_run_user }}
 RUN_MODE = {{ gitea_run_mode }}
 
+[oauth2]
+JWT_SECRET =
+
+[security]
+INTERNAL_TOKEN = 
+INSTALL_LOCK   = true
+SECRET_KEY     =
+
 [database]
 DB_TYPE  = {{ gitea_db_type }}
 HOST     = {{ gitea_host }}

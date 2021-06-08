@@ -30,7 +30,15 @@
     shell: /sbin/nologin
     comment: "Git nologin user"
     state: present
-
+    
+- name: "Create Gitea Release directory"
+  ansible.builtin.file:
+    path: /opt/gitea/{{ gitea_version }} 
+    state: directory
+    owener: root
+    group: root
+    mode: 0755
+    
 - name: "Download binary gitea from Github to /usr/local/bin/gitea"
   get_url:
     url: "{{ gitea_url }}"
@@ -38,6 +46,7 @@
     owner: root
     group: root
     mode: 0755
+
 
 - name: "Create directory structure for gitea"
   file:

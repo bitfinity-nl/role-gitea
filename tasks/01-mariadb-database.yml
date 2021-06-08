@@ -18,7 +18,7 @@
 - name: "Create initial Gogs MariaDB database"
   mysql_db:
     name: "{{ gitea_db_name }}"
-    encoding: utf8
+    encoding: "{{ gitea_charset }}"
     state: present
     login_user: "{{ mariadb_administrative_account }}"
     login_password: "{{ mariadb_administrative_password }}"

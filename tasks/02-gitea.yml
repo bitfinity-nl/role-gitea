@@ -33,7 +33,7 @@
 
 - name: "Download binary gitea from Github to /usr/local/bin/gitea"
   get_url:
-    url: "{{ gitea_version }}"
+    url: "{{ gitea_url }}"
     dest: /usr/local/bin/gitea
     owner: root
     group: root

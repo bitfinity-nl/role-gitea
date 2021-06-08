@@ -29,6 +29,7 @@
     group: root
     mode: '0600'  
     backup: yes
+  when: result_app_ini.stat.exists == false
 
 - name: "Configure global SECRET_KEY for Gitea"
   ansible.builtin.lineinfile:

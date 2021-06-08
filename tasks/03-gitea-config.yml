@@ -8,6 +8,16 @@
 #   Gitea is a community managed lightweight code hosting solution written in Go.
 #
 
+#- name: "Check if /etc/gitea/app.ini exists"
+
+- name: "Generate (Global) SECRET_KEY for Gitea"
+  shell: gitea generate secret SECRET_KEY
+  register: result_global_secretkey
+
+- name: "Generate INTERNAL_TOKEN for Gitea"
+  shell: gitea generate secret INTERNAL_TOKEN
+  register: result_internal_token
+ 
 - name: "Transfer template gitea/app.ini.j2 to /etc/gitea/app.ini"
   ansible.builtin.template:
     src: gitea/app.ini.j2
@@ -17,4 +27,18 @@
     mode: '0600'  
     backup: yes
 
-#- name: ""
+- name: "Configure global SECRET_KEY for Gitea"
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^INTERNAL_TOKEN.*='
+    line: "INTERNAL_TOKEN = {{ result_global_secretkey.stdout }}" 
+#    when:
+    
+- name: "Configure INTERNAL_TOKEN for Gitea" 
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^INTERNAL_TOKEN.*='
+    line: "SECRET_KEY = {{ result_internal_token.stdout }}"
+#    when: 
+    
+    

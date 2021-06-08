@@ -34,7 +34,7 @@
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
     regexp: '^SECRET_KEY.*='
-    line: "SECRET_KEY = {{ result_global_secretkey.stdout }}" 
+    line: "SECRET_KEY     = {{ result_global_secretkey.stdout }}" 
 #    when:
     
 - name: "Configure INTERNAL_TOKEN for Gitea" 

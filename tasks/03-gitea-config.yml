@@ -45,11 +45,11 @@
     line: "INTERNAL_TOKEN = {{ result_internal_token.stdout }}"
   when: result_app_ini.stat.exists == false
     
-- name: "Configure /etc/gitea/app.ini - database"
+- name: "Configure /etc/gitea/app.ini for database"
   blockinfile:
-    path: /var/www/html/index.html
-    marker: "<!-- {mark} ANSIBLE MANAGED BLOCK - Database-->"
-    insertafter: "<body>"
+    path: /etc/gitea/app.ini
+    marker: "#<!-- {mark} ANSIBLE MANAGED BLOCK - Database-->"
+    # insertafter: "<body>"
     block: |
        [database]
        DB_TYPE  = {{ gitea_db_type }}

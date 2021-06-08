@@ -48,8 +48,7 @@
 - name: "Configure /etc/gitea/app.ini for database"
   blockinfile:
     path: /etc/gitea/app.ini
-    marker: "#<!-- {mark} ANSIBLE MANAGED BLOCK - Database-->"
-    # insertafter: "<body>"
+    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - Database --"
     block: |
        [database]
        DB_TYPE  = {{ gitea_db_type }}

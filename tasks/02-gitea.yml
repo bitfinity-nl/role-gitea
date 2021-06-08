@@ -31,11 +31,11 @@
     comment: "Git nologin user"
     state: present
     
-- name: "Create Gitea Release directory"
+- name: "Create directory for Gitea releases"
   ansible.builtin.file:
     path: /opt/gitea/{{ gitea_version }} 
     state: directory
-    owener: root
+    owner: root
     group: root
     mode: 0755
     

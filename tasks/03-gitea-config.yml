@@ -24,12 +24,12 @@
   register: result_app_ini
 
 - name: "Generate (Global) SECRET_KEY for Gitea"
-  shell: gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key
+  shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"
   register: result_global_secretkey
   when: result_secret_key.stdout == false
 
 - name: "Generate INTERNAL_TOKEN for Gitea"
-  shell: gitea generate secret INTERNAL_TOKEN > /opt/gitea/generated/internal-token
+  shell: "gitea generate secret INTERNAL_TOKEN > /opt/gitea/generated/internal-token"
   register: result_internal_token
   when: result_internal_token.stdout == false
 

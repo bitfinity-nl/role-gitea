@@ -62,13 +62,13 @@
 
 - name: "Register generated SECRET_KEY to variable registerd_secret_key"
   shell: "cat /opt/gitea/generated/secret-key"
-  register: result_global_secretkey
-  when: result_secret_key.stat.exists == false
+  register: found_global_secretkey
+  when: result_secret_key.stat.exists == true
 
 - name: "Register generated INTERNAL_TOKEN to variable registerd_internal_token"
   shell: "cat /opt/gitea/generated/internal-token"
-  register: result_internal_token
-  when: result_internal_token.stat.exists == false
+  register: found_internal_token
+  when: result_internal_token.stat.exists == true
 
 
 

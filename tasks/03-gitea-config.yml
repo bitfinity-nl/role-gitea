@@ -43,93 +43,102 @@
     backup: yes
   when: result_app_ini.stat.exists == false
 
-- name: "Configure global SECRET_KEY for Gitea"
-  ansible.builtin.lineinfile:
-    path: /etc/gitea/app.ini
-    regexp: '^SECRET_KEY.*='
-    line: "SECRET_KEY     = {{ result_global_secretkey.stdout }}" 
-  when: result_app_ini.stat.exists == false
+#- name: "Configure global SECRET_KEY for Gitea"
+#  ansible.builtin.lineinfile:
+#    path: /etc/gitea/app.ini
+#    regexp: '^SECRET_KEY.*='
+#    line: "SECRET_KEY     = {{ result_global_secretkey.stdout }}" 
+#  when: result_app_ini.stat.exists == false
     
-- name: "Configure INTERNAL_TOKEN for Gitea" 
-  ansible.builtin.lineinfile:
-    path: /etc/gitea/app.ini
-    regexp: '^INTERNAL_TOKEN.*='
-    line: "INTERNAL_TOKEN = {{ result_internal_token.stdout }}"
-  when: result_app_ini.stat.exists == false
-    
-- name: "Configure /etc/gitea/app.ini"
-  ansible.builtin.lineinfile:
-    path: /etc/gitea/app.ini
-    regexp: "{{ find }}"
-    line: "{{ replace }}"
-  with_items:
+#- name: "Configure INTERNAL_TOKEN for Gitea" 
+#  ansible.builtin.lineinfile:
+#    path: /etc/gitea/app.ini
+#    regexp: '^INTERNAL_TOKEN.*='
+#    line: "INTERNAL_TOKEN = {{ result_internal_token.stdout }}"
+#  when: result_app_ini.stat.exists == false
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+#- name: "Configure /etc/gitea/app.ini"
+#  ansible.builtin.lineinfile:
+#    path: /etc/gitea/app.ini
+#    regexp: "{{ find }}"
+#    line: "{{ replace }}"
+#  with_items:
     # -- Begin: Configure section [database] --
-    - { find: 'DB_TYPE.*=', replace: 'DB_TYPE     = {{ gitea_db_type }}' }
-    - { find: 'HOST.*=', replace: 'HOST     = {{ gitea_host }}' }
-    - { find: 'NAME.*=', replace: 'NAME     = {{ gitea_name }}' }
-    - { find: 'USER.*=', replace: 'USER     = {{ gitea_user }}' }
-    - { find: 'PASSWD.*=', replace: 'PASSWD    = {{ gitea_passwd }}' }
-    - { find: 'SSL_MODE.*=', replace: 'SSL_MODE = {{ gitea_ssl_mode }}' }
-    - { find: 'CHARSET.*=', replace: 'CHARSET  = {{ gitea_charset }}' }
-    - { find: 'PATH.*=', replace: 'PATH     = {{ gitea_path }}' }
+#    - { find: 'DB_TYPE.*=', replace: 'DB_TYPE     = {{ gitea_db_type }}' }
+#    - { find: 'HOST.*=', replace: 'HOST     = {{ gitea_host }}' }
+#    - { find: 'NAME.*=', replace: 'NAME     = {{ gitea_name }}' }
+#    - { find: 'USER.*=', replace: 'USER     = {{ gitea_user }}' }
+#    - { find: 'PASSWD.*=', replace: 'PASSWD    = {{ gitea_passwd }}' }
+#    - { find: 'SSL_MODE.*=', replace: 'SSL_MODE = {{ gitea_ssl_mode }}' }
+#    - { find: 'CHARSET.*=', replace: 'CHARSET  = {{ gitea_charset }}' }
+#    - { find: 'PATH.*=', replace: 'PATH     = {{ gitea_path }}' }
     # -- End: Configure section [database] --
 
     # -- Begin: Configure section [repository] --
-    - { find: 'ROOT.*=', replace: 'ROOT     = {{ gitea_path }}' }
+#    - { find: 'ROOT.*=', replace: 'ROOT     = {{ gitea_path }}' }
     # -- End: Configure section [repository] --
 
     # -- Begin: Configure section [server] --
-    - { find: 'SSH_DOMAIN.*=', replace: 'SSH_DOMAIN     = {{ gitea_gitea_domain }}' }
-    - { find: 'DOMAIN.*=', replace: 'DOMAIN     = {{ gitea_gitea_domain }}' }
-    - { find: 'HTTP_PORT.*=', replace: 'HTTP_PORT     = {{ gitea_http_port }}' }    
-    - { find: 'ROOT_URL.*=', replace: 'ROOT_URL     = {{ gitea_root_url }}' }
-    - { find: 'DISABLE_SSH.*=', replace: 'DISABLE_SSH     = {{ gitea_disable_ssh }}' }    
-    - { find: 'SSH_PORT.*=', replace: 'SSH_PORT     = {{ gitea_ssh_port }}' }
+#    - { find: 'SSH_DOMAIN.*=', replace: 'SSH_DOMAIN     = {{ gitea_gitea_domain }}' }
+#    - { find: 'DOMAIN.*=', replace: 'DOMAIN     = {{ gitea_gitea_domain }}' }
+#    - { find: 'HTTP_PORT.*=', replace: 'HTTP_PORT     = {{ gitea_http_port }}' }    
+#    - { find: 'ROOT_URL.*=', replace: 'ROOT_URL     = {{ gitea_root_url }}' }
+#    - { find: 'DISABLE_SSH.*=', replace: 'DISABLE_SSH     = {{ gitea_disable_ssh }}' }    
+#    - { find: 'SSH_PORT.*=', replace: 'SSH_PORT     = {{ gitea_ssh_port }}' }
 #    - { find: 'LFS_START_SERVER.*=', replace: 'LFS_START_SERVER     = {{ true }}' }    
 #    - { find: 'LFS_CONTENT_PATH.*=', replace: 'LFS_CONTENT_PATH     = {{ gitea_path }}' }
 #    - { find: 'LFS_JWT_SECRET.*=', replace: 'LFS_JWT_SECRET     = {{ gitea_path }}' }    
-    - { find: 'OFFLINE_MODE.*=', replace: 'OFFLINE_MODE     = {{ gitea_offline_mode }}' }
+#    - { find: 'OFFLINE_MODE.*=', replace: 'OFFLINE_MODE     = {{ gitea_offline_mode }}' }
     # -- End: Configure section [server] -- 
 
     # -- Begin: Configure section [mailer] --
-    - { find: 'ENABLED.*=', replace: 'ENABLED     = {{ gitea_enabled }}' }    
+#    - { find: 'ENABLED.*=', replace: 'ENABLED     = {{ gitea_enabled }}' }    
     # -- End: Configure section [mailer] --
     
     # -- Begin: Configure section [service] --
-    - { find: 'REGISTER_EMAIL_CONFIRM.*=', replace: 'REGISTER_EMAIL_CONFIRM     = {{ gitea_register_email_confirm }}' }  
-    - { find: 'ENABLE_NOTIFY_MAIL.*=', replace: 'ENABLE_NOTIFY_MAIL     = {{ gitea_enable_notify_mail }}' }  
-    - { find: 'DISABLE_REGISTRATION.*=', replace: 'DISABLE_REGISTRATION     = {{ gitea_disable_registration }}' }  
-    - { find: 'ALLOW_ONLY_EXTERNAL_REGISTRATION.*=', replace: 'ALLOW_ONLY_EXTERNAL_REGISTRATION     = {{ gitea_allow_only_external_registration }}' }  
-    - { find: 'ENABLE_CAPTCHA.*=', replace: 'ENABLE_CAPTCHA     = {{ gitea_enable_captcha }}' }  
-    - { find: 'REQUIRE_SIGNIN_VIEW.*=', replace: 'REQUIRE_SIGNIN_VIEW     = {{ gitea_require_signin_view }}' } 
-    - { find: 'DEFAULT_KEEP_EMAIL_PRIVATE.*=', replace: 'DEFAULT_KEEP_EMAIL_PRIVATE     = {{ gitea_default_keep_email_private }}' }  
-    - { find: 'DEFAULT_ALLOW_CREATE_ORGANIZATION.*=', replace: 'DEFAULT_ALLOW_CREATE_ORGANIZATION     = {{ gitea_default_allow_create_organization }}' }  
-    - { find: 'DEFAULT_ENABLE_TIMETRACKING.*=', replace: 'DEFAULT_ENABLE_TIMETRACKING     = {{ gitea_enable_timetracking }}' }  
-    - { find: 'NO_REPLY_ADDRESS.*=', replace: 'NO_REPLY_ADDRESS     = {{ gitea_no_reply_address }}' }  
+#    - { find: 'REGISTER_EMAIL_CONFIRM.*=', replace: 'REGISTER_EMAIL_CONFIRM     = {{ gitea_register_email_confirm }}' }  
+#    - { find: 'ENABLE_NOTIFY_MAIL.*=', replace: 'ENABLE_NOTIFY_MAIL     = {{ gitea_enable_notify_mail }}' }  
+#    - { find: 'DISABLE_REGISTRATION.*=', replace: 'DISABLE_REGISTRATION     = {{ gitea_disable_registration }}' }  
+#    - { find: 'ALLOW_ONLY_EXTERNAL_REGISTRATION.*=', replace: 'ALLOW_ONLY_EXTERNAL_REGISTRATION     = {{ gitea_allow_only_external_registration }}' }  
+#    - { find: 'ENABLE_CAPTCHA.*=', replace: 'ENABLE_CAPTCHA     = {{ gitea_enable_captcha }}' }  
+#    - { find: 'REQUIRE_SIGNIN_VIEW.*=', replace: 'REQUIRE_SIGNIN_VIEW     = {{ gitea_require_signin_view }}' } 
+#    - { find: 'DEFAULT_KEEP_EMAIL_PRIVATE.*=', replace: 'DEFAULT_KEEP_EMAIL_PRIVATE     = {{ gitea_default_keep_email_private }}' }  
+#    - { find: 'DEFAULT_ALLOW_CREATE_ORGANIZATION.*=', replace: 'DEFAULT_ALLOW_CREATE_ORGANIZATION     = {{ gitea_default_allow_create_organization }}' }  
+#    - { find: 'DEFAULT_ENABLE_TIMETRACKING.*=', replace: 'DEFAULT_ENABLE_TIMETRACKING     = {{ gitea_enable_timetracking }}' }  
+#    - { find: 'NO_REPLY_ADDRESS.*=', replace: 'NO_REPLY_ADDRESS     = {{ gitea_no_reply_address }}' }  
     # -- End: Configure section [service] --    
 
     # -- Begin: Configure section [Picture] --
-    - { find: 'DISABLE_GRAVATAR.*=', replace: 'DISABLE_GRAVATAR     = {{ gitea_disable_gravatar }}' }
-    - { find: 'ENABLE_FEDERATED_AVATAR.*=', replace: 'ENABLE_FEDERATED_AVATAR     = {{ gitea_enable_federated_avatar }}' }
+ #   - { find: 'DISABLE_GRAVATAR.*=', replace: 'DISABLE_GRAVATAR     = {{ gitea_disable_gravatar }}' }
+ #   - { find: 'ENABLE_FEDERATED_AVATAR.*=', replace: 'ENABLE_FEDERATED_AVATAR     = {{ gitea_enable_federated_avatar }}' }
     # -- End: Configure section [Picture] --
     
-- name: Configure /etc/gitea/app.ini - [picture]"
-  blockinfile:
-  block: |
-    path: /etc/gitea/app.ini
-    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [picture] --" 
+#- name: Configure /etc/gitea/app.ini - [picture]"
+#  blockinfile:
+#  block: |
+#    path: /etc/gitea/app.ini
+#    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [picture] --" 
     
     
-- name: Configure /etc/gitea/app.ini - [openid]"
-  blockinfile:
-  block: |
-    path: /etc/gitea/app.ini
-    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [openid] --"
+#- name: Configure /etc/gitea/app.ini - [openid]"
+#  blockinfile:
+#  block: |
+#    path: /etc/gitea/app.ini
+#    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [openid] --"
 
-- name: Configure /etc/gitea/app.ini - [session]"
-  blockinfile:
-  block: |
-    path: /etc/gitea/app.ini
-    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [session] --"
+#- name: Configure /etc/gitea/app.ini - [session]"
+#  blockinfile:
+#  block: |
+#    path: /etc/gitea/app.ini
+#    marker: "# -- {mark} ANSIBLE MANAGED BLOCK - [session] --"
  
- - 
+

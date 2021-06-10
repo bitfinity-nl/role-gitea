@@ -60,7 +60,7 @@
 
 - name: "Register generated SECRET_KEY to variable registerd_secret_key"
   shell: "cat /opt/gitea/generated/secret-key"
-  register: result_global_secretkey  
+  register: result_global_secretkey
 
 - name: "Register generated INTERNAL_TOKEN to variable registerd_internal_token"
   shell: "cat /opt/gitea/generated/internal-token"

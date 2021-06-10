@@ -55,10 +55,11 @@
 
 - name: "Register generated INTERNAL_TOKEN to variable registerd_internal_token"
   shell: "cat /opt/gitea/generated/internal-token"
+  w
   register: found_internal_token
-  when: result_internal_token.stat.exists == true
+  when: result_secret_key.stat.exists == true
 #  when: result_internal_token.stat.exists == true
-
+  when: result_internal_token.stat.exists == false
 
 
 #- name: "Configure global SECRET_KEY for Gitea"

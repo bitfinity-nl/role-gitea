@@ -72,6 +72,9 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 #   gitea_run_user                : 'gitea'
 #   gitea_run_mode                : 'prod'
 #
+#   # -- [security] --
+#   gitea_install_lock            : 'false'
+#
 #   # -- [database] --
 #   gitea_db_type                 : 'mysql'
 #   gitea_host                    : '127.0.0.1:3306'
@@ -114,9 +117,6 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 #   gitea_level                   : 'info'
 #   gitea_root_path               : '/opt/gitea/log'
 # 
-#   # -- [security] --
-#   gitea_install_lock            : 'false'
-#   gitea_secret_key              : 'ljmkrutc6q0yi56'
 #
 # Note(s):
 #   Please see the documentation for the configuration options.
@@ -124,6 +124,10 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 gitea_app_name                : 'Gitea GIT '
 gitea_run_user                : 'git'
 gitea_run_mode                : 'prod'
+
+# --[security] --
+gitea_install_lock            : 'false'
+
 # -- [database] --
 gitea_db_type                 : 'mysql'
 gitea_host                    : '127.0.0.1:3306'
@@ -157,22 +161,17 @@ gitea_default_keep_email_private        : 'false'
 gitea_default_allow_create_organization : 'true'
 gitea_enable_timetracking               : 'true'
 gitea_no_reply_address                  : 'noreply.example.org'
+
 # -- [picture] --
 gitea_disable_gravatar                  : 'false'
 gitea_enable_federated_avatar           : 'true'
 
-
-
-
-
-
-
 # -- [session] --
 gitea_provider                : 'file'
+
 # -- [log] --
 gitea_mode                    : 'file'
 gitea_level                   : 'info'
 gitea_root_path               : '/opt/gitea/log'
-# --[security] --
-gitea_install_lock            : 'false'
-gitea_secret_key              : 'ljmkrutc6q0yi56'
+
+

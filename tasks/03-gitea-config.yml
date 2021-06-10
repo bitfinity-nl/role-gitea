@@ -28,6 +28,14 @@
     path: /opt/gitea/generated/
     state: directory
 
+- name: "Create repository directory {{ gitea_root }} exists"
+  file:
+    path: "{{ gitea_root }}"
+    owner: git
+    group: git
+    mode: 0755
+    state: directory
+    
 - name: "Generate (Global) SECRET_KEY for Gitea"
   shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"
   #register: result_global_secretkey

@@ -23,7 +23,7 @@
     path: /etc/gitea/app.ini
   register: result_app_ini
 
-- name: "Check if dir /etc/gitea/generated exists"
+- name: "Create directory /etc/gitea/generated exists"
   path: /opt/gitea/generated/
   state: directory
 

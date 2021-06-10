@@ -24,8 +24,9 @@
   register: result_app_ini
 
 - name: "Create directory /etc/gitea/generated exists"
-  path: /opt/gitea/generated/
-  state: directory
+  file:
+    path: /opt/gitea/generated/
+    state: directory
 
 - name: "Generate (Global) SECRET_KEY for Gitea"
   shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"

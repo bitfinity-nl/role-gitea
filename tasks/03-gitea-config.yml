@@ -48,6 +48,24 @@
     backup: yes
   when: result_app_ini.stat.exists == false
 
+- name: "Generate (Global) SECRET_KEY for Gitea"
+  shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"
+  register: result_global_secretkey
+  when: result_secret_key.stat.exists == false
+
+- name: "Generate INTERNAL_TOKEN for Gitea"
+  shell: "gitea generate secret INTERNAL_TOKEN > /opt/gitea/generated/internal-token"
+  register: result_internal_token
+  when: result_internal_token.stat.exists == false
+
+- name: "Register generated SECRET_KEY to variable registerd_secret_key"
+  shell: "cat /opt/gitea/generated/secret-key"
+  register: result_global_secretkey  
+
+- name: "Register generated INTERNAL_TOKEN to variable registerd_internal_token"
+  shell: "cat /opt/gitea/generated/internal-token"
+  register: result_internal_token
+
 #- name: "Configure global SECRET_KEY for Gitea"
 #  ansible.builtin.lineinfile:
 #    path: /etc/gitea/app.ini

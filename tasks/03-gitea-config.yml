@@ -23,6 +23,10 @@
     path: /etc/gitea/app.ini
   register: result_app_ini
 
+- name: "Check if dir /etc/gitea/generated exists"
+  path: /opt/gitea/generated/
+  state: directory
+
 - name: "Generate (Global) SECRET_KEY for Gitea"
   shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"
   register: result_global_secretkey

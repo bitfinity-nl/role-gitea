@@ -1,67 +1,67 @@
-APP_NAME = Gitea: Git with a cup of tea
-RUN_USER = git
-RUN_MODE = prod
+APP_NAME = {{ gitea_app_name }}
+RUN_USER = {{ gitea_run_user }}
+RUN_MODE = {{ gitea_run_mode }}
 
 [oauth2]
-JWT_SECRET = Vyis-reUc5FJmM-Em0mdxNddAg_knpFe_h8rssfRDX8
+JWT_SECRET =
 
 [security]
-INTERNAL_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MjMwNjc5NDV9.C6cxObOlGSK5NXULodsP8JVwwKgh3Pfkw4lZ30n9mbA
-INSTALL_LOCK   = true
-SECRET_KEY     = peuUQK4Sy1u30NaMzdlwtgiwwjM1XOVfOuvCGUmjqCD56Z51a6IEAHfOKfNsU2zy
+INTERNAL_TOKEN = 
+INSTALL_LOCK   = {{ gitea_install_lock }}
+SECRET_KEY     = 
 
 [database]
-DB_TYPE  = mysql
-HOST     = 127.0.0.1:3306
-NAME     = gitea
-USER     = gitea
-PASSWD   = password
-SSL_MODE = disable
-CHARSET  = utf8
-PATH     = /var/lib/gitea/data/gitea.db
+DB_TYPE  = {{ gitea_db_type }}
+HOST     = {{ gitea_host }}
+NAME     = {{ gitea_name }}
+USER     = {{ gitea_user }}
+PASSWD   = {{ gitea_passwd }}
+SSL_MODE = {{ gitea_ssl_mode }}
+CHARSET  = {{ gitea_charset }}
+PATH     = {{ gitea_path }}
 
 [repository]
-ROOT = /home/git/gitea-repositories
+ROOT = {{ gitea_root }}
 
 [server]
-SSH_DOMAIN       = localhost
-DOMAIN           = localhost
-HTTP_PORT        = 3000
-ROOT_URL         = http://10.1.30.31:3000/
-DISABLE_SSH      = false
-SSH_PORT         = 22
-LFS_START_SERVER = true
+SSH_DOMAIN       = {{ gitea_gitea_domain }}
+DOMAIN           = {{ gitea_gitea_domain }}
+HTTP_PORT        = {{ gitea_http_port }}
+ROOT_URL         = {{ gitea_root_url }}
+DISABLE_SSH      = {{ gitea_disable_ssh }}
+SSH_PORT         = {{ gitea_ssh_port }}
+LFS_START_SERVER = {{ gitea_start_ssh_server }}
 LFS_CONTENT_PATH = /var/lib/gitea/data/lfs
 LFS_JWT_SECRET   = G_hv7L_QT9qcVUjYskU51HZZQTy8yzSmFv7W57AGWrQ
-OFFLINE_MODE     = false
+OFFLINE_MODE     = {{ gitea_offline_mode }}
 
 [mailer]
-ENABLED = false
+ENABLED = {{ gitea_enabled }}
 
 [service]
-REGISTER_EMAIL_CONFIRM            = false
-ENABLE_NOTIFY_MAIL                = false
-DISABLE_REGISTRATION              = false
-ALLOW_ONLY_EXTERNAL_REGISTRATION  = false
-ENABLE_CAPTCHA                    = false
-REQUIRE_SIGNIN_VIEW               = false
-DEFAULT_KEEP_EMAIL_PRIVATE        = false
-DEFAULT_ALLOW_CREATE_ORGANIZATION = true
-DEFAULT_ENABLE_TIMETRACKING       = true
-NO_REPLY_ADDRESS                  = noreply.example.org
+REGISTER_EMAIL_CONFIRM            = {{ gitea_register_email_confirm }}
+ENABLE_NOTIFY_MAIL                = {{ gitea_enable_notify_mail }}
+DISABLE_REGISTRATION              = {{ gitea_disable_registration }}
+ALLOW_ONLY_EXTERNAL_REGISTRATION  = {{ gitea_allow_only_external_registration }}
+ENABLE_CAPTCHA                    = {{ gitea_enable_captcha }}
+REQUIRE_SIGNIN_VIEW               = {{ gitea_require_signin_view }}
+DEFAULT_KEEP_EMAIL_PRIVATE        = {{ gitea_default_keep_email_private }}
+DEFAULT_ALLOW_CREATE_ORGANIZATION = {{ gitea_default_allow_create_organization }}
+DEFAULT_ENABLE_TIMETRACKING       = {{ gitea_enable_timetracking }}
+NO_REPLY_ADDRESS                  = {{ gitea_no_reply_address }}
 
 [picture]
-DISABLE_GRAVATAR        = false
-ENABLE_FEDERATED_AVATAR = true
+DISABLE_GRAVATAR        = {{ gitea_disable_gravatar }}
+ENABLE_FEDERATED_AVATAR = {{ gitea_enable_federated_avatar }}
 
 [openid]
 ENABLE_OPENID_SIGNIN = true
 ENABLE_OPENID_SIGNUP = true
 
 [session]
-PROVIDER = file
+PROVIDER = {{ gitea_provider }}
 
 [log]
-MODE      = file
-LEVEL     = info
-ROOT_PATH = /var/lib/gitea/log
+MODE      = {{ gitea_mode }}
+LEVEL     = {{ gitea_level }}
+ROOT_PATH = {{ gitea_root_path }}

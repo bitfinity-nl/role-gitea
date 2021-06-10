@@ -24,14 +24,14 @@
   register: result_app_ini
 
 - name: "Generate (Global) SECRET_KEY for Gitea"
-  shell: gitea generate secret SECRET_KEY
+  shell: gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key
   register: result_global_secretkey
-  when: 
+  when: result_secret_key.stdout == false
 
 - name: "Generate INTERNAL_TOKEN for Gitea"
-  shell: gitea generate secret INTERNAL_TOKEN
+  shell: gitea generate secret INTERNAL_TOKEN > /opt/gitea/generated/internal-token
   register: result_internal_token
-  when:
+  when: result_internal_token.stdout == false
 
 - name: "Transfer template gitea/app.ini.j2 to /etc/gitea/app.ini"
   ansible.builtin.template:

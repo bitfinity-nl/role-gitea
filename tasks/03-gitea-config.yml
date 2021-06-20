@@ -75,13 +75,15 @@
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
     regexp: '^SECRET_KEY.*='
-    line: "SECRET_KEY     = {{ found_global_secretkey.stdout }}" 
+    line: "SECRET_KEY     = {{ found_global_secretkey.stdout }}"
+  when: result_secret_key.stat.exists == true  
     
 - name: "Configure INTERNAL_TOKEN for Gitea" 
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
     regexp: '^INTERNAL_TOKEN.*='
     line: "INTERNAL_TOKEN = {{ found_internal_token.stdout }}"
+  when: result_internal_token.stat.exists == true
 
 - name: "Enable and start gitea service"
   systemd:

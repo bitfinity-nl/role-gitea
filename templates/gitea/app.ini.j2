@@ -24,15 +24,15 @@ PATH     = {{ gitea_path }}
 ROOT = {{ gitea_root }}
 
 [server]
-SSH_DOMAIN       = {{ gitea_gitea_domain }}
-DOMAIN           = {{ gitea_gitea_domain }}
+SSH_DOMAIN       = {{ gitea_ssh_domain }}
+DOMAIN           = {{ gitea_domain }}
 HTTP_PORT        = {{ gitea_http_port }}
 ROOT_URL         = {{ gitea_root_url }}
 DISABLE_SSH      = {{ gitea_disable_ssh }}
 SSH_PORT         = {{ gitea_ssh_port }}
-LFS_START_SERVER = {{ gitea_start_ssh_server }}
-LFS_CONTENT_PATH = /var/lib/gitea/data/lfs
-LFS_JWT_SECRET   = G_hv7L_QT9qcVUjYskU51HZZQTy8yzSmFv7W57AGWrQ
+LFS_START_SERVER = {{ gitea_lfs_start_server }}
+LFS_CONTENT_PATH = {{ gitea_lfs_content_path }}
+LFS_JWT_SECRET   = 
 OFFLINE_MODE     = {{ gitea_offline_mode }}
 
 [mailer]

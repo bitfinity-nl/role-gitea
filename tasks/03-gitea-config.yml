@@ -22,7 +22,14 @@
   stat:
     path: /opt/gitea/generated/jwt_secret
   register: result_jwt_secret
-  
+ 
+- name: "Check if /opt/gitea/generated/lfs_jwt_secret LFS_JWT_SECRET exists"
+  stat:
+    path: /opt/gitea/generated/lfs_jwt_secret
+  register: result_jwt_secret 
+ 
+ 
+
 - name: "Check if /etc/gitea/app.ini exists"
   stat:
     path: /etc/gitea/app.ini
@@ -52,8 +59,13 @@
   when: result_internal_token.stat.exists == false
 
 - name: "Generate JWT_SECRET for Gitea"
-  shell: "gitea generate secret JWT_SECRET > /opt/gitea/generated/jwt_secret
+  shell: "gitea generate secret JWT_SECRET > /opt/gitea/generated/jwt_secret"
   when: result_jwt_secret.stat.exists == false
+
+- name: "Generate LFS_JWT_SECRET for Gitea"
+  shell: "gitea generate secret LFS_JWT_SECRET > /opt/gitea/generated/lfs_jwt_secret"
+  when: result_lfs_jwt_secret.stat.exists == false
+
 
 
 - name: "Transfer template gitea/app.ini.j2 to /etc/gitea/app.ini"
@@ -88,7 +100,14 @@
     chdir: /opt/gitea/generated/
   register: found_jwt_secret
   when: result_jwt_secret.stat.exists == true
-  
+
+- name: "Register generated LFS_JWT_SECRET to variable registerd_lfs_jwt_secret"
+  shell: "cat lfs_jwt_secret"
+  args:
+    chdir: /opt/gitea/generated/
+  register: found_lfs_jwt_secret
+  when: result_lfs_jwt_secret.stat.exists == true
+
 - name: "Configure global SECRET_KEY for Gitea"
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
@@ -101,13 +120,20 @@
     path: /etc/gitea/app.ini
     regexp: '^INTERNAL_TOKEN.*='
     line: "INTERNAL_TOKEN = {{ found_internal_token.stdout }}"
-  when: result_internal_token.stat.exists == true
+  when: result_jwt_secret.stat.exists == true
 
-- name: "Configure INTERNAL_TOKEN for Gitea" 
+- name: "Configure JWT_SECRET for Gitea" 
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
     regexp: '^JWT_SECRET.*='
     line: "JWT_SECRET = {{ found_jwt_secret.stdout }}"
+  when: result_lfs_jwt_secret.stat.exists == true
+
+- name: "Configure LFS_JWT_SECRET for Gitea" 
+  ansible.builtin.lineinfile:
+    path: /etc/gitea/app.ini
+    regexp: '^LFS_JWT_SECRET.*='
+    line: "LFS_JWT_SECRET = {{ found_lfs_jwt_secret.stdout }}"
   when: result_internal_token.stat.exists == true
   
 - name: "Enable and start gitea service"

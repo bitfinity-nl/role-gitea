@@ -51,8 +51,8 @@
     src: gitea/app.ini.j2
     dest: /etc/gitea/app.ini
     owner: root
-    group: root
-    mode: '0600'  
+    group: git
+    mode: '0640'  
     backup: yes
   when: result_app_ini.stat.exists == false
   notify: restart_gitea

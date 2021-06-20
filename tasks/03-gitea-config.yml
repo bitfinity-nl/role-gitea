@@ -70,8 +70,8 @@
     group: git
     mode: '0640'
     backup: yes
-    force: yes
-  when: result_app_ini.stat.exists == false
+  #  force: yes
+  #when: result_app_ini.stat.exists == false
   notify: restart_gitea
 
 - name: "Register generated SECRET_KEY to variable registerd_secret_key"
@@ -130,8 +130,9 @@
     line: "LFS_JWT_SECRET   = {{ found_lfs_jwt_secret.stdout }}"
   when: result_lfs_jwt_secret.stat.exists == true
 
-#- name: "Create administrative Gitea account"
-
+- name: "Create administrative Gitea account"
+  shell: sudo su - git -c "gitea admin user create --username {{ gitea_admin_user }} --password {{ gitea_admin_pass }} --email {{ gitea_admin_mail }} -c /etc/gitea/app.ini"
+  when: result_app_ini.stat.exists == false
 
 - name: "Enable and start gitea service"
   systemd:

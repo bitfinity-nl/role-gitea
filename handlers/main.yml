@@ -21,4 +21,6 @@
     daemon_reload: yes
     enabled: yes
     name: gitea    
-    
+
+- name: "create_gitadmin"
+  shell: sudo su - git -c "gitea admin user create --username {{ gitea_admin_user }} --password {{ gitea_admin_pass }} --email {{ gitea_admin_mail }} -c /etc/gitea/app.ini"

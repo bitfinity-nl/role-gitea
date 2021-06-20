@@ -26,9 +26,7 @@
 - name: "Check if /opt/gitea/generated/lfs_jwt_secret LFS_JWT_SECRET exists"
   stat:
     path: /opt/gitea/generated/lfs_jwt_secret
-  register: result_lfs_jwt_secret 
- 
- 
+  register: result_lfs_jwt_secret
 
 - name: "Check if /etc/gitea/app.ini exists"
   stat:
@@ -50,12 +48,10 @@
     
 - name: "Generate (Global) SECRET_KEY for Gitea"
   shell: "gitea generate secret SECRET_KEY > /opt/gitea/generated/secret-key"
-  #register: result_global_secretkey
   when: result_secret_key.stat.exists == false
 
 - name: "Generate INTERNAL_TOKEN for Gitea"
   shell: "gitea generate secret INTERNAL_TOKEN > /opt/gitea/generated/internal-token"
-  #register: result_internal_token
   when: result_internal_token.stat.exists == false
 
 - name: "Generate JWT_SECRET for Gitea"
@@ -65,8 +61,6 @@
 - name: "Generate LFS_JWT_SECRET for Gitea"
   shell: "gitea generate secret LFS_JWT_SECRET > /opt/gitea/generated/lfs_jwt_secret"
   when: result_lfs_jwt_secret.stat.exists == false
-
-
 
 - name: "Transfer template gitea/app.ini.j2 to /etc/gitea/app.ini"
   ansible.builtin.template:
@@ -135,7 +129,10 @@
     regexp: '^LFS_JWT_SECRET.*='
     line: "LFS_JWT_SECRET   = {{ found_lfs_jwt_secret.stdout }}"
   when: result_lfs_jwt_secret.stat.exists == true
-  
+
+#- name: "Create administrative Gitea account"
+
+
 - name: "Enable and start gitea service"
   systemd:
     name: gitea

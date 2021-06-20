@@ -37,7 +37,7 @@
     state: directory
     owner: git
     group: git
-    mode: 0755
+    mode: 0750
 
 - name: "Download binary gitea from Github to /usr/local/bin/gitea"
   get_url:
@@ -45,7 +45,7 @@
     dest: /opt/gitea/{{ gitea_version }}/gitea
     owner: git
     group: git
-    mode: 0755
+    mode: 0750
 
 - name: "Create symlink from /opt/gitea/{{ gitea_version }} to /usr/local/bin/gitea"
   ansible.builtin.file:
@@ -53,7 +53,7 @@
     dest: /usr/local/bin/gitea
     owner: git
     group: git
-    mode: 0755
+    mode: 0750
     state: link
 
 - name: "Create directory structure for gitea"
@@ -64,20 +64,21 @@
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
   with_items:
-    - { path: '/var/lib/gitea/custom', owner: 'root', group: 'root', mode: '755' }
-    - { path: '/var/lib/gitea/public', owner: 'root', group: 'root', mode: '755' }
+    - { path: '/var/lib/gitea', owner: 'git', group: 'git', mode: '750' }
+    - { path: '/var/lib/gitea/custom', owner: 'git', group: 'git', mode: '750' }
     - { path: '/var/lib/gitea/data', owner: 'git', group: 'git', mode: '750' }
-    - { path: '/var/lib/gitea/indexers', owner: 'git', group: 'git', mode: '750' }
     - { path: '/var/lib/gitea/log', owner: 'git', group: 'git', mode: '750' }
-    - { path: '/etc/gitea', owner: 'root', group: 'git', mode: '0770' }
-
+    - { path: '/etc/gitea', owner: 'root', group: 'git', mode: '0770' }    
+    #- { path: '/var/lib/gitea/public', owner: 'root', group: 'root', mode: '755' }
+    #- { path: '/var/lib/gitea/indexers', owner: 'git', group: 'git', mode: '750' }
+    
 - name: "Transfer gitea systemd service file to /etc/systemd/system/"
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: root
     group: root
-    mode: 0755
+    mode: 0750
   with_items:
     - { src: 'gitea/gitea.service.j2', dest: '/etc/systemd/system/gitea.service', desc: 'For systemd service' }
 

@@ -131,7 +131,7 @@
   when: result_lfs_jwt_secret.stat.exists == true
 
 - name: "Create administrative Gitea account"
-  raw: sudo su - git -c "gitea admin user create --username {{ gitea_admin_user }} --password {{ gitea_admin_pass }} --email {{ gitea_admin_mail }} -c /etc/gitea/app.ini"
+  raw: 'sudo su - git -c "gitea admin user create --username {{ gitea_admin_user }} --password {{ gitea_admin_pass }} --email {{ gitea_admin_mail }} -c /etc/gitea/app.ini"'
   when: result_app_ini.stat.exists == false
 
 - name: "Enable and start gitea service"

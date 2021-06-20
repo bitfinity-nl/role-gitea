@@ -133,7 +133,7 @@
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
     regexp: '^LFS_JWT_SECRET.*='
-    line: "LFS_JWT_SECRET = {{ found_lfs_jwt_secret.stdout }}"
+    line: "LFS_JWT_SECRET   = {{ found_lfs_jwt_secret.stdout }}"
   when: result_lfs_jwt_secret.stat.exists == true
   
 - name: "Enable and start gitea service"

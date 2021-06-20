@@ -27,7 +27,8 @@
   user:
     name: git
     group: git
-    shell: /sbin/nologin
+    # shell: /sbin/nologin
+    shell: /bin/bash
     comment: "Git nologin user"
     state: present
     

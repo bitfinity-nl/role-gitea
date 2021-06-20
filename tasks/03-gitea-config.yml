@@ -26,7 +26,7 @@
 - name: "Check if /opt/gitea/generated/lfs_jwt_secret LFS_JWT_SECRET exists"
   stat:
     path: /opt/gitea/generated/lfs_jwt_secret
-  register: result_jwt_secret 
+  register: result_lfs_jwt_secret 
  
  
 

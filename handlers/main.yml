@@ -14,3 +14,11 @@
     daemon_reload: yes
     enabled: yes
     name: apache2
+    
+- name: "restart_gitea"
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+    name: gitea    
+    

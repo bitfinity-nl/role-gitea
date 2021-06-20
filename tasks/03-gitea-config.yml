@@ -62,7 +62,7 @@
   args:
     chdir: /opt/gitea/generated/  
   register: found_global_secretkey
-  when: result_secret_key.stat.exists == truenano 
+  when: result_secret_key.stat.exists == true
 
 - name: "Register generated INTERNAL_TOKEN to variable registerd_internal_token"
   shell: "cat internal-token"

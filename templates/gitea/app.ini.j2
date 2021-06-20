@@ -55,8 +55,8 @@ DISABLE_GRAVATAR        = {{ gitea_disable_gravatar }}
 ENABLE_FEDERATED_AVATAR = {{ gitea_enable_federated_avatar }}
 
 [openid]
-ENABLE_OPENID_SIGNIN = true
-ENABLE_OPENID_SIGNUP = true
+ENABLE_OPENID_SIGNIN = {{ gitea_enable_openid_signin }}
+ENABLE_OPENID_SIGNUP = {{ gitea_enable_openid_signup }}
 
 [session]
 PROVIDER = {{ gitea_provider }}

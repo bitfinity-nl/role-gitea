@@ -52,7 +52,8 @@
     dest: /etc/gitea/app.ini
     owner: root
     group: git
-    mode: '0640'  
+    #mode: '0640'  
+    mode: '0660'
     backup: yes
   when: result_app_ini.stat.exists == false
   notify: restart_gitea

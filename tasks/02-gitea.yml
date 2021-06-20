@@ -71,6 +71,8 @@
     - { path: '/etc/gitea', owner: 'root', group: 'git', mode: '0770' }    
     #- { path: '/var/lib/gitea/public', owner: 'root', group: 'root', mode: '755' }
     #- { path: '/var/lib/gitea/indexers', owner: 'git', group: 'git', mode: '750' }
+    - { path: '/var/lib/gitea/data/lfs', owner: 'root', group: 'git', mode: '0770' }    
+    
     
 - name: "Transfer gitea systemd service file to /etc/systemd/system/"
   template:

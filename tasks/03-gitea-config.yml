@@ -13,11 +13,16 @@
     path: /opt/gitea/generated/secret-key
   register: result_secret_key
   
-- name: "Check if /opt/gitea-internal INTERNAL_TOKEN exists"
+- name: "Check if  /opt/gitea/generated/internal-token INTERNAL_TOKEN exists"
   stat:
     path: /opt/gitea/generated/internal-token
   register: result_internal_token
 
+- name: "Check if /opt/gitea/generated/jwt_secret JWT_SECRET exists"
+  stat:
+    path: /opt/gitea/generated/jwt_secret
+  register: result_jwt_secret
+  
 - name: "Check if /etc/gitea/app.ini exists"
   stat:
     path: /etc/gitea/app.ini
@@ -46,6 +51,11 @@
   #register: result_internal_token
   when: result_internal_token.stat.exists == false
 
+- name: "Generate JWT_SECRET for Gitea"
+  shell: "gitea generate secret JWT_SECRET > /opt/gitea/generated/jwt_secret
+  when: result_jwt_secret.stat.exists == false
+
+
 - name: "Transfer template gitea/app.ini.j2 to /etc/gitea/app.ini"
   ansible.builtin.template:
     src: gitea/app.ini.j2
@@ -72,6 +82,13 @@
   register: found_internal_token
   when: result_internal_token.stat.exists == true
 
+- name: "Register generated JWT_SECRET to variable registerd_jwt_secret"
+  shell: "cat jwt_secret"
+  args:
+    chdir: /opt/gitea/generated/
+  register: found_jwt_secret
+  when: result_jwt_secret.stat.exists == true
+  
 - name: "Configure global SECRET_KEY for Gitea"
   ansible.builtin.lineinfile:
     path: /etc/gitea/app.ini
@@ -86,6 +103,13 @@
     line: "INTERNAL_TOKEN = {{ found_internal_token.stdout }}"
   when: result_internal_token.stat.exists == true
 
+- name: "Configure INTERNAL_TOKEN for Gitea" 
+  ansible.builtin.lineinfile:
+    path: /etc/gitea/app.ini
+    regexp: '^JWT_SECRET.*='
+    line: "JWT_SECRET = {{ found_jwt_secret.stdout }}"
+  when: result_internal_token.stat.exists == true
+  
 - name: "Enable and start gitea service"
   systemd:
     name: gitea

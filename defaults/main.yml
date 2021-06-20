@@ -163,6 +163,9 @@ gitea_disable_gravatar                  : 'false'
 gitea_enable_federated_avatar           : 'true'
 # -- [session] --
 gitea_provider                          : 'file'
+# -- OpenID --
+gitea_enable_openid_signin              : 'false'
+gitea_enable_openid_signup              : 'false'
 # -- [log] --
 gitea_mode                              : 'file'
 gitea_level                             : 'info'

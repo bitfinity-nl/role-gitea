@@ -27,3 +27,9 @@
   import_tasks: 04-apache2.yml
   when:
     - ansible_architecture == "x86_64"
+
+- name: "LDAP authentication"
+  import_tasks: 05-gitea-ldap.yml
+  when:
+    - ansible_architecture == "x86_64"
+    

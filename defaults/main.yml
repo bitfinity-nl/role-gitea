@@ -175,3 +175,26 @@ gitea_level                             : 'info'
 gitea_root_path                         : '/opt/gitea/log'
 
 
+# -- LDAP - Active Directory settings --
+#
+#
+#
+#
+gitea_ldap_state             : 'enabled'
+gitea_ldap_security_protocol : 'unencrypted'
+gitea_ldap_host              : 'ldap.example.com'
+gitea_ldap_port              : '389'
+gitea_bind_dn                : 'CN=svc_gogs,OU=Service Accounts,OU=Users,OU=bitfinity,DC=bitfinity,DC=net'
+gitea_bind_password          : ''
+gitea_user_search_base       : 'ou=example,dc=example,dc=com'
+gitea_user_filter            : '(&(objectClass=person)(sAMAccountName=%s))'
+gitea_admin_filter           : '(memberOf=CN=app_gogs_admin,OU=Applications,OU=Resources,OU=bitfinity,DC=bitfinity,DC=net)'
+gitea_username_attribute     : 'sAMAccountName'
+gitea_firstname_attribute    : 'givenName'
+gitea_surname_attribute      : 'sn'
+gitea_email_attribute        : 'mail'
+
+
+
+
+

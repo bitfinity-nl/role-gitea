@@ -181,6 +181,7 @@ gitea_root_path                         : '/opt/gitea/log'
 #
 #
 gitea_ldap_state             : 'enabled'
+gitea_ldap_name              : 'LDAP'
 gitea_ldap_security_protocol : 'unencrypted'
 gitea_ldap_host              : 'ldap.example.com'
 gitea_ldap_port              : '389'

@@ -12,7 +12,7 @@
 - name: "Configure Gitea for LDAP (BindDN) authentication" 
   raw: |
     sudo su - git -c "gitea admin auth add-ldap \
-    --name {{ gitea_ldap_state }} \
+    --name {{ gitea_ldap_name }} \
     --security-protocol {{ gitea_ldap_security_protocol }} \
     --host {{ gitea_ldap_host}} \
     --port {{ gitea_ldap_port }} \

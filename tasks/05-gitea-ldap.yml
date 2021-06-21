@@ -1,0 +1,10 @@
+---
+# Title: role-gitea
+#
+# Author: bitfinity.nl
+# File: tasks/05-gitea-ldap.yml
+#
+# Description:
+#   Gitea is a community managed lightweight code hosting solution written in Go.
+#
+

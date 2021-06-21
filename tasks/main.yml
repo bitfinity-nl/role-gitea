@@ -23,16 +23,8 @@
   when:
     - ansible_architecture == "x86_64"
 
-
-#- name: "Install Gitea"
-#  import_tasks: gitea-config.yml
-#  when:
-#    - ansible_distribution_version == "18.04"
-#    - ansible_architecture == "x86_64"
-
-
-#- name: "Install Apache2"
-#  import_tasks: apache2.yml
-#  when:
-#    - ansible_distribution_version == "18.04"
-#    - ansible_architecture == "x86_64"
+- name: "Install Apache2"
+  import_tasks: 04-apache2.yml
+  when:
+    - ansible_distribution_version == "18.04"
+    - ansible_architecture == "x86_64"

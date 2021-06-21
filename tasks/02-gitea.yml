@@ -2,7 +2,7 @@
 # Title: role-gitea
 #
 # Author: bitfinity.nl
-# File: tasks/gogs.yml
+# File: tasks/02-gitea.yml
 #
 # Description:
 #   Gitea is a community managed lightweight code hosting solution written in Go.
@@ -89,3 +89,10 @@
   systemd:
     name: gitea
     enabled: yes
+
+- name: "Enable firewall to allow SSH traffic"
+  ufw:
+    state: enabled
+    rule: allow
+    name: OpenSSH
+

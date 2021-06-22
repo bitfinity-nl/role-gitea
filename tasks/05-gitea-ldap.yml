@@ -28,3 +28,4 @@
     --attributes-in-bind \
     --synchronize-users \
     -c /etc/gitea/app.ini"
+  no_log: true

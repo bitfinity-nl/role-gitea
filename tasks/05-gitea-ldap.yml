@@ -8,11 +8,11 @@
 #   Gitea is a community managed lightweight code hosting solution written in Go.
 #
 
-- name: "Check if authentication profile exists"
-  raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | cut -f 2 | grep -o "{{ gitea_ldap_name }}"'
+#- name: "Check if authentication profile exists"
+#  raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | cut -f 2 | grep -o "{{ gitea_ldap_name }}"'
   #raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | grep "{{ gitea_ldap_name }}" | awk { print $1 }'
-  register: result_ldap_name
-  #failed_when: result_ldap_name.rc != 1 and result_ldap_name.rc != 0
+#  register: result_ldap_name
+#  failed_when: result_ldap_name.rc != 1 and result_ldap_name.rc != 0
 
 - name: "Configure Gitea for LDAP (BindDN) authentication" 
   raw: |

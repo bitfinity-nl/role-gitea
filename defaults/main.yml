@@ -17,10 +17,9 @@
 # -- MariaDB server settings --
 #
 # Variable(s):
-#   mariadb_administrative_account  : 'root' 
-#   mariadb_administrative_password : 'password'
+#   mariadb_administrative_account  : 'root'      # Set the administrative account for MariaDB server (Default=root). 
+#   mariadb_administrative_password : 'password'  # Set the administrative password for the MariaDB server.
 #
-#mariadb_install                 : 'false'
 mariadb_administrative_account  : 'root' 
 mariadb_administrative_password : '{{ def_mysql_pass }}'
 
@@ -28,8 +27,8 @@ mariadb_administrative_password : '{{ def_mysql_pass }}'
 # -- MariaDB database settings --
 #
 # Variable(s):
-#   gitea_db_name : 'gitea'      # Set the database name.
-#   gitea_db_user : 'gitea'      # Set the database username.
+#   gitea_db_name : 'gitea'     # Set the database name.
+#   gitea_db_user : 'gitea'     # Set the database username.
 #   gitea_db_pass : 'password'  # Set the database password.
 # 
 gitea_db_name : 'gitea'
@@ -124,7 +123,7 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 gitea_app_name                          : 'Gitea GIT '
 gitea_run_user                          : 'git'
 gitea_run_mode                          : 'prod'
-# --[security] --
+# -- [security] --
 gitea_install_lock                      : 'true'
 # -- [database] --
 gitea_db_type                           : 'mysql'
@@ -147,10 +146,9 @@ gitea_ssh_port                          : '22'
 gitea_lfs_start_server                  : 'false'
 gitea_lfs_content_path                  : '/var/lib/gitea/data/lfs'
 gitea_offline_mode                      : 'false'
-
 # -- [mailer] --
 gitea_enabled                           : 'false'
-# -- Configure [Service] --
+# -- [Service] --
 gitea_register_email_confirm            : 'false'
 gitea_enable_notify_mail                : 'false'
 gitea_disable_registration              : 'true'
@@ -177,10 +175,23 @@ gitea_root_path                         : '/opt/gitea/log'
 
 # -- LDAP - Active Directory settings --
 #
+# Variable(s):
+#   gitea_ldap_state             : 'enabled'                                                                                      # Enable or Disable LDAP / Active Directory login.
+#   gitea_ldap_name              : 'LDAP'                                                                                         # Set LDAP name
+#   gitea_ldap_security_protocol : 'unencrypted'                                                                                  # Set security protocol.
+#   gitea_ldap_host              : 'ldap.example.com'                                                                             # Set Hostname, FQDN or IP to LDAP server.
+#   gitea_ldap_port              : '389'                                                                                          # Set LDAP port number (Default=389).
+#   gitea_bind_dn                : 'cn=administrator,cn=users,dc=example,dc=com'                                                  # Set BindDN account for searching LDAP tree.
+#   gitea_bind_password          : 'changepassword'                                                                               # Set BindDN password.
+#   gitea_user_search_base       : 'ou=example,dc=example,dc=com'                                                                 # Set Search base.
+#   gitea_user_filter            : '(&(objectClass=person)(sAMAccountName=%s))'                                                   # Set User filter.
+#   gitea_admin_filter           : '(memberOf=cn=app_gitea_admin,ou=applications,ou=resources,ou=bitfinity,dc=bitfinity,dc=com)'  # Set Admin filter, members of the group are website admins.
+#   gitea_username_attribute     : 'sAMAccountName'                                                                               # Set username attribute.
+#   gitea_firstname_attribute    : 'givenName'                                                                                    # Set givenname attribute.
+#   gitea_surname_attribute      : 'sn'                                                                                           # Set surname attribute.
+#   gitea_email_attribute        : 'mail'                                                                                         # Set mail attribute.
 #
-#
-#
-gitea_ldap_state             : 'enabled'
+gitea_ldap_state             : 'disabled'
 gitea_ldap_name              : 'LDAP'
 gitea_ldap_security_protocol : 'unencrypted'
 gitea_ldap_host              : 'ldap.example.com'

@@ -31,5 +31,5 @@
     --attributes-in-bind \
     --synchronize-users \
     -c /etc/gitea/app.ini"
-  no_log: true
-  when: result_ldap_name.stat == {{ gitea_ldap_name }}
+  #no_log: true
+  when: result_ldap_name.stdout == {{ gitea_ldap_name }}

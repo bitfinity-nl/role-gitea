@@ -137,8 +137,8 @@ gitea_path                              : 'data/gitea.db'
 # -- [repository] --
 gitea_root                              : '/opt/gitea/gitea-repositories'
 # -- [server] --
-gitea_ssh_domain                        : '{{ gitea_domain }}'
-gitea_domain                            : 'localhost'
+gitea_ssh_domain                        : '{{ gitea_apache2_domain }}'
+gitea_domain                            : '{{ gitea_apache2_domain }}'
 gitea_http_port                         : '3000'
 gitea_root_url                          : 'http://localhost:3000/'
 gitea_disable_ssh                       : 'false'

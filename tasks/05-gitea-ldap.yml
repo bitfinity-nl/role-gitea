@@ -33,5 +33,6 @@
     --attributes-in-bind \
     --synchronize-users \
     -c /etc/gitea/app.ini"
-  #no_log: true
-  #when: result_ldap_name.stdout == ""
+  register: result_add_ldap
+  failed_when: result_add_ldap.rc != 1
+

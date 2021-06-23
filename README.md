@@ -6,20 +6,18 @@ Gitea is a community managed lightweight code hosting solution written in Go. It
 - Create an service account with readonly account (BindDN).
 - Create an security group for admins (example: app_giteadmin).
 
+## Example playbooks
 ```
 ---
 # Title: Ansible-pull playbook for Gitea server
 #
 # Author: bitfinity-nl - L. Rutten
 # Owner: IT Operations
-# File: bit-fin-01.yml
+# File: playbook-gitea-01.yml
 #
 # Description:
 #   Playbook for provisioning a UrBackup server
 #   on a Ubuntu 20.04LTS server.
-
-- name: "Check requirements"
-  import_playbook: requirements.yml
   
 - hosts: localhost
   connection: local

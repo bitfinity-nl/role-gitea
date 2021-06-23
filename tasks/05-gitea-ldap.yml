@@ -9,7 +9,7 @@
 #
 
 - name: "Check if authentication profile {{ gitea_ldap_name }} exists"
-  raw: sudo su - git -c '"gitea admin auth list -c /etc/gitea/app.ini" | grep -o "{{ gitea_ldap_name }}" -c /etc/gitea/app.ini'
+  raw: sudo su - git -c '"gitea admin auth list -c /etc/gitea/app.ini" | grep -o "{{ gitea_ldap_name }}"'
   register: result_ldap_name
 
 - name: "Configure Gitea for LDAP (BindDN) authentication" 

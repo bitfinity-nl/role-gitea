@@ -8,12 +8,6 @@
 #   Gitea is a community managed lightweight code hosting solution written in Go.
 #
 
-#- name: "Check if authentication profile exists"
-#  raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | cut -f 2 | grep -o "{{ gitea_ldap_name }}"'
-  #raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | grep "{{ gitea_ldap_name }}" | awk { print $1 }'
-#  register: result_ldap_name
-#  failed_when: result_ldap_name.rc != 1 and result_ldap_name.rc != 0
-
 - name: "Configure Gitea for LDAP (BindDN) authentication" 
   raw: |
     sudo su - git -c "gitea admin auth add-ldap \
@@ -35,31 +29,3 @@
     -c /etc/gitea/app.ini"
   register: result_add_ldap
   failed_when: result_add_ldap.rc != 1
-
-- name: "Find authentication id for profile {{ gitea_ldap_name }}"
-  raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | cut -f 1 | grep -o "{{ gitea_ldap_name }}"'
-  register: result_ldap_profile_id
-  failed_when: result_ldap_profile_id.rc != 1
-
-- name: "Configure Gitea for LDAP (BindDN) authentication" 
-  raw: |
-    sudo su - git -c "gitea admin auth update-ldap \
-    --id '{{ result_ldap_profile_id.stdout }}' \
-    --name '{{ gitea_ldap_name }}' \
-    --security-protocol {{ gitea_ldap_security_protocol }} \
-    --host {{ gitea_ldap_host}} \
-    --port {{ gitea_ldap_port }} \
-    --bind-dn '{{ gitea_bind_dn }}' \
-    --bind-password {{ gitea_bind_password}} \
-    --user-search-base {{ gitea_user_search_base }} \
-    --user-filter '{{ gitea_user_filter }}' \
-    --admin-filter '{{ gitea_admin_filter }}' \
-    --username-attribute {{ gitea_username_attribute }} \
-    --firstname-attribute {{ gitea_firstname_attribute }} \
-    --surname-attribute {{ gitea_surname_attribute }}  \
-    --email-attribute {{ gitea_email_attribute }} \
-    --attributes-in-bind \
-    --synchronize-users \
-    -c /etc/gitea/app.ini"
-  register: result_update_ldap
-  failed_when: result_update_ldap.rc != 1

@@ -34,4 +34,4 @@
     --synchronize-users \
     -c /etc/gitea/app.ini"
   #no_log: true
-  when: result_ldap_name.stdout == ""
+  #when: result_ldap_name.stdout == ""

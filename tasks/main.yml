@@ -32,4 +32,5 @@
   import_tasks: 05-gitea-ldap.yml
   when:
     - ansible_architecture == "x86_64"
+    - gitea_ldap_state == "enabled"
     

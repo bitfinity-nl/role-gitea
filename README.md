@@ -6,7 +6,7 @@ Gitea is a community managed lightweight code hosting solution written in Go. It
 - Create an service account with readonly account (BindDN).
 - Create an security group for admins (example: app_giteadmin).
 
----
+```
 ---
 # Title: Ansible-pull playbook for Gitea server
 #

@@ -33,10 +33,12 @@
     --attributes-in-bind \
     --synchronize-users \
     -c /etc/gitea/app.ini"
-  #register: result_add_ldap
-  #failed_when: result_add_ldap.rc != 1
+  register: result_add_ldap
+  failed_when: result_add_ldap.rc != 1
 
 - name: "Find authentication id for profile {{ gitea_ldap_name }}"
   raw: sudo su - git -c 'gitea admin auth list -c /etc/gitea/app.ini | cut -f 1 | grep -o "{{ gitea_ldap_name }}"'
   register: result_ldap_profile_id
   failed_when: result_ldap_profile_id.rc != 1
+
+#- name: "Find authentication id for profile {{ gitea_ldap_name }}"

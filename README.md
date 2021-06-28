@@ -2,9 +2,12 @@
 Gitea is a community managed lightweight code hosting solution written in Go. It is published under the MIT license.
 
 
-## For LDAP / Active Directory
-- Create an service account with readonly account (BindDN).
-- Create an security group for admins (example: app_giteadmin).
+## prerequisite
+
+### For LDAP / Active Directory login
+1. Create a service account for reading Active Directory (example: svc_gitea);
+2. Create a security admin group (example: app_gitea_admin );
+3. Add members to the admin security group for managing servers;
 
 ## Example playbooks
 ```

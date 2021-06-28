@@ -7,7 +7,7 @@ sudo su - git -c "gitea admin auth add-ldap \
 --port {{ gitea_ldap_port }} \
 --bind-dn '{{ gitea_bind_dn }}' \
 --bind-password {{ gitea_bind_password}} \
---user-search-base {{ gitea_user_search_base }} \
+--user-search-base '{{ gitea_user_search_base }}' \
 --user-filter '{{ gitea_user_filter }} ' \
 --admin-filter '{{ gitea_admin_filter }}' \
 --username-attribute {{ gitea_username_attribute }} \

@@ -176,7 +176,7 @@ gitea_level                             : 'info'
 gitea_root_path                         : '/opt/gitea/log'
 # -- [ui] --
 gitea_default_theme                     : 'arc-green' 
-
+gitea_themes                            : 'arc-green, gitea'
 
 # -- LDAP - Active Directory settings --
 #

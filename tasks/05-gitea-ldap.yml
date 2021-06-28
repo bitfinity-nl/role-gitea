@@ -12,18 +12,18 @@
   raw: |
     sudo su - git -c "gitea admin auth add-ldap \
     --name '{{ gitea_ldap_name }}' \
-    --security-protocol {{ gitea_ldap_security_protocol }} \
-    --host {{ gitea_ldap_host}} \
-    --port {{ gitea_ldap_port }} \
+    --security-protocol '{{ gitea_ldap_security_protocol }}' \
+    --host '{{ gitea_ldap_host}}' \
+    --port '{{ gitea_ldap_port }}' \
     --bind-dn '{{ gitea_bind_dn }}' \
     --bind-password {{ gitea_bind_password}} \
-    --user-search-base {{ gitea_user_search_base }} \
+    --user-search-base '{{ gitea_user_search_base }}' \
     --user-filter '{{ gitea_user_filter }}' \
     --admin-filter '{{ gitea_admin_filter }}' \
-    --username-attribute {{ gitea_username_attribute }} \
-    --firstname-attribute {{ gitea_firstname_attribute }} \
-    --surname-attribute {{ gitea_surname_attribute }}  \
-    --email-attribute {{ gitea_email_attribute }} \
+    --username-attribute '{{ gitea_username_attribute }}' \
+    --firstname-attribute '{{ gitea_firstname_attribute }}' \
+    --surname-attribute '{{ gitea_surname_attribute }}'  \
+    --email-attribute '{{ gitea_email_attribute }}' \
     --attributes-in-bind \
     --synchronize-users \
     -c /etc/gitea/app.ini"

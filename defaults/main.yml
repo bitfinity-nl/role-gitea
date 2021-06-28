@@ -116,9 +116,12 @@ gitea_apache2_cert_chainfile : '{{ def_ap_sslcertificatechainfile }}'
 #   gitea_level                   : 'info'
 #   gitea_root_path               : '/opt/gitea/log'
 # 
+#   # -- [ui] --
+#   gitea_default_theme           : 'arc-green' 
 #
 # Note(s):
 #   Please see the documentation for the configuration options.
+#   - https://github.com/go-gitea/gitea/blob/main/custom/conf/app.example.ini
 #
 gitea_app_name                          : 'Gitea GIT '
 gitea_run_user                          : 'git'
@@ -171,6 +174,8 @@ gitea_enable_openid_signup              : 'false'
 gitea_mode                              : 'file'
 gitea_level                             : 'info'
 gitea_root_path                         : '/opt/gitea/log'
+# -- [ui] --
+gitea_default_theme                     : 'arc-green' 
 
 
 # -- LDAP - Active Directory settings --

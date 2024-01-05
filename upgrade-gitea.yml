@@ -49,9 +49,9 @@
        ansible.builtin.file:
          src: /opt/gitea/{{ gitea_version }}/gitea
          dest: /usr/local/bin/gitea
-         owner: git
-         group: git
-         mode: 0750
+         #owner: git
+         #group: git
+         #mode: 0750
          state: link
 
      - name: "Start Gitea service (systemd)"

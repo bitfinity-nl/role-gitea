@@ -1,0 +1,60 @@
+---
+# Title: Upgrade Gitea
+#
+# Author: Bitfinity / L. Rutten
+# Owner: Bitfinity / L. Rutten
+#
+# File: upgrade-gitea.yml
+#
+# Description:
+#   This playbook contains the tasks
+#    for upgrading Gitea server.
+#
+- hosts: localhost
+  connection: local
+  become: true
+
+
+  vars_prompt:
+    - name: "gitea_version"
+      prompt: "Please enter the version of Gitea"
+      private: no
+
+  vars:
+
+
+  tasks:
+     - name: "Stop Gitea service (systemd)"
+       ansible.builtin.systemd:
+         state: stopped
+         name: gitea
+
+     - name: "Create directory for Gitea releases"
+       ansible.builtin.file:
+         path: /opt/gitea/{{ gitea_version }}
+         state: directory
+         owner: root
+         group: root
+         mode: 0755
+
+     - name: "Download binary gitea from Github to /usr/local/bin/gitea"
+       ansible.builtin.get_url:
+         url: "https://dl.gitea.com/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-amd64"
+         dest: /opt/gitea/{{ gitea_version }}/gitea
+         owner: root
+         group: root
+         mode: 0755
+
+     - name: "Create symlink from /opt/gitea/{{ gitea_version }} to /usr/local/bin/gitea"
+       ansible.builtin.file:
+         src: /opt/gitea/{{ gitea_version }}/gitea
+         dest: /usr/local/bin/gitea
+         owner: git
+         group: git
+         mode: 0750
+         state: link
+
+     - name: "Start Gitea service (systemd)"
+       ansible.builtin.systemd:
+         state: started
+         name: gitea
